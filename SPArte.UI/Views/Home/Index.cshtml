@@ -1,0 +1,78 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Obras";
+
+}
+<div id="page">
+    <div id="container"></div>
+    <button type="button" onclick="ObrasSelecionadas()">SUBMETER</button>
+</div>
+
+<div id="template"></div>
+
+@section Styles	{
+    <link rel="stylesheet" type="text/css" href="~/Content/dfgallery.css" />
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        var url_obras = "@Url.Action("Obras", "Home")";
+        var url_gravar_obras = "@Url.Action("GravarObras", "Home")";         
+           
+
+        function ObrasSelecionadas()
+        {           
+           
+            var obras = document.getElementsByTagName("INPUT");
+                selected_itens = [];               
+                for (i = 0; i < obras.length; i++)
+                {
+                    var item = obras[i];
+                    if (item.type == "checkbox" && item.checked)
+                        {
+                        selected_itens.push({ id: obras[i].value });
+                        }                    
+            }
+            if (selected_itens.length < 1) alert("Nenhuma obra selecionada!");
+            else
+            {
+            console.log(selected_itens);
+            GravarObras(selected_itens);
+            }
+            
+        };
+
+        function GravarObras(itens)
+        {// identificar primeira obra selecionada para capa
+            var capa = $('.row').find('input[type=checkbox]:checked').filter(':first').val();       
+
+	        var j = { obras: itens, capa : capa };
+            var json = JSON.stringify(j);	              
+
+	        $.ajax(
+		        {
+			        url: url_gravar_obras,
+			        type: "POST", dataType: 'json', cache: false, async: true,
+			        data: {json: json }
+		        })
+		        .done(function(data)
+		        {
+                    if (data.result.success == false)
+                    {
+                            alert(data.result.message);
+                        return;
+                    };
+                    
+                    alert(data.result.message);
+                    window.location.href = "/exposicao"
+		        })
+		        .fail(function()
+                {
+                    Console.log("Falha na conexão");
+		        });
+        };      
+
+    </script>
+    <script src="~/Scripts/Home.js" asp-append-version="true"></script>
+}

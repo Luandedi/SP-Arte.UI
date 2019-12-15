@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Exposição";}
+
+<div class="row col-16">
+    <div class="col-16 col-md-4 the-side-content">
+        <h3 class="display-1 section-title">Exposição</h3>
+    </div> <div class="col-16 col-md-6 the-content">
+        <p><strong>"SP-ARTE DIGITAL"<br></strong>Exposição Coletiva</p> <p>
+            <strong>Localização<br></strong>SP-ARTE, São Paulo<strong><br></strong>13 dez 2019 - 20 dez 2019.<br>
+        </p>
+    </div>
+    <div class="col-16 col-md-6 the-content">
+        <div class="zoom-max-height full-width-images zoom-image-container">
+            <span class="unzoomed-image">
+                <img id="imgcapa" src="">
+            </span>
+        </div>
+    </div>
+</div>
+<div class="col-16 margin-bottom-1 module-line"><hr></div>
+<div class="row col-16">
+    <div class="col-16 col-md-4 padding-top-1">
+        <h3 class="section-title">
+            Sobre
+        </h3>
+    </div>
+    <div id="info" class="col-16 col-md-12 padding-top-1 padding-bottom-2">     
+    </div>
+</div>
+<div class="col-16 margin-bottom-1 module-line"><hr></div>
+<div class="row col-16">
+    <div class="col-16">
+        <div class="row smart-pills">
+            <div class="col-12">
+                <h3 class="section-title">
+                    <span>Obras</span>
+                </h3>
+            </div>
+            <div class="col-16">
+                <div class="row">
+                    <div id="obras" class="smart-pills-scroll" style="height: 512px;">
+                        <div class="col-8 col-md-4 archive-item" index="0"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" id="remove" onclick="RemoveObras()" style="display: none;">REMOVER OBRAS</button>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        var url_exposicao_info = "@Url.Action("ExposicaoInfo", "Exposicao")";
+        var url_expostas = "@Url.Action("ObrasExpostas", "Exposicao")";
+        var url_remover_obras = "@Url.Action("RemoveObrasExpostas", "Exposicao")";
+
+         function RemoveObras()
+                    {
+                        $.ajax(
+                            {
+                                url: url_remover_obras, type: "GET", dataType: 'json', cache: false, async: true
+                            })
+                            .done(function (json) {
+                                console.log(json.data);
+                                if (json.data.result.success == false) {
+                                    alert(data.result.message);
+                                    return;
+                                };
+
+                                alert(json.data.result.message);
+                                location.reload();  
+
+                            })
+                            .fail(function () {
+                                console.log("Falha na requisiçao");
+                            });            
+        };
+       
+    </script>
+    <script src="~/Scripts/exposicao.js" asp-append-version="true"></script>
+}

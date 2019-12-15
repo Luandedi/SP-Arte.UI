@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <title>@ViewBag.Title - SP-Arte</title>
+    <link type="text/css" rel="stylesheet" href="~/Content/arte.css">   
+    @RenderSection("Styles", required: false)
+</head>
+<body class="page-obras template-features page singular lang-pt">
+
+    <header id="menu" class="">
+        <div id="menu-desktop" class="">
+            <div class="container">
+                <div class="row">
+                    <div id="menu-header" class="col-16 hidden-print">
+                        <div class="header-search-desktop">
+                            <div class="menu-item">
+                                <a href="/home">
+                                    SP—Arte.com
+                                </a>
+                            </div>
+                            <form action="6" class="outline-form">
+                                <div class="form-group"><div class="form-field form-field-search"><input> <div class="icon-search"></div></div></div>
+                            </form>
+                        </div>
+                        <div id="menu-header-items">
+                            <div class="header-menu-item menu-item-perfil">
+                                <div>Login</div>
+                            </div>
+                            <div class="header-menu-item"><a href="#">Área do Expositor</a></div>
+                            <div class="menu-language"><a href="#" class="lang-menu-item active">PT</a><a href="#" class="lang-menu-item">EN</a></div>
+                        </div>
+                    </div>
+                    <div class="col-16 hidden-print"><hr></div>
+                    <div id="menu-items" class="col-16 hidden-print">
+                        <div class="menu-item menu-item-feiras arte">
+                            <div>SP<span class="menu-dash">—</span>Arte</div>
+                        </div>
+                        <div class="menu-item menu-item-feiras foto">
+                            <div>SP<span class="menu-dash">—</span>Foto</div>
+                        </div><div class="menu-item">
+                            <a href="#" target="_self">Galerias</a>
+                        </div>
+                        <div class="menu-item">
+                            <a href="#" target="_self">Artistas</a>
+                        </div>
+                        <div class="menu-item"><a href="/home" target="_self">Obras</a></div>
+                        <div class="menu-item">
+                        <a href="/exposicao" target="_self">Exposições</a>
+                        </div><div class="menu-item"><a href="#">Notícias</a></div>
+                        <div class="menu-item"><a href="#">Sobre</a></div>
+                    </div>
+                    <div class="col-16 menu-line-fairs"><hr></div>
+                    <div class="col-16 closing-line"><hr></div>
+                    <div id="submenu-desktop" class="col-16"></div>
+                </div>
+            </div>
+            <div class="menu-bkg" style="height: 0px; background-color: rgb(255, 255, 255);"></div> <div class="menu-base-bkg"></div>
+        </div>
+
+    </header>
+
+    <section id="section-todas-as-obras" data-offset="32" class="container content-module ">
+        <div class="row">
+            <div class="col-16">
+                <div class="row module-archive">
+                    <div class=" col-16 row module-archive" style="min-height: 720px;">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer" class="container">
+        <div class="row">
+            <div class="col-16 margin-bottom-0-5"><hr></div> <div class="col-16 col-md-4 margin-bottom-2"><h5 class="social-site"><a href="https://www.instagram.com/sp_arte" target="_blank">Instagram</a></h5><h5 class="social-site"><a href="https://www.facebook.com/feira.sparte" target="_blank">Facebook</a></h5><h5 class="social-site"><a href="https://twitter.com/sp_arte" target="_blank">Twitter</a></h5><h5 class="social-site"><a href="https://www.flickr.com/photos/sp-arte/albums" target="_blank">Flickr</a></h5><h5 class="social-site"><a href="https://www.youtube.com/user/FeiraSPArte" target="_blank">YouTube</a></h5><h5 class="social-site"><a href="https://www.artsy.net/sp-arte" target="_blank">Artsy</a></h5></div> <div class="col-16 col-md-10 margin-bottom-2 a-no-underline padding-top-0-5">
+                <p>
+                    SP-Arte Eventos Culturais Ltda.<br>
+                    T 55 11 3077 2880<br> <a href="mailto:info@sp-arte.com">
+                        info@sp-arte.com<br>
+                    </a><a href="mailto:suporte@sp-arte.com">suporte@sp-arte.com</a><br> <a href="https://www.sp-arte.com/termos-de-uso/" target="_blank" rel="noopener">Termos de uso e política de privacidade</a>
+                </p>
+            </div> <div class="col-16 col-md-2 a-no-underline padding-top-0-5"><p>© SP-Arte<br><a href="mailto:diegoluan@msn.com" target="_blank">design by DF</a></p></div>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
